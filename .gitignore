@@ -3,3 +3,7 @@
 .settings
 target
 /.gwt
+/src/main/gwt-unitCache
+/src/main/webapp/dojo.gwt.DojoGwtBasicsJUnit
+/src/main/webapp/DojoGwtBasics
+/src/main/webapp/WEB-INF/deploy
