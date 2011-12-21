@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE module SYSTEM "http://google-web-toolkit.googlecode.com/svn/releases/2.4/distro-source/core/src/gwt-module.dtd">
 <module>
 
-	<inherits name='dojo.gwt.DojoGwtBasics' />
+	<inherits name="dojo.gwt.DojoGwtBasics" />
 
 </module>
