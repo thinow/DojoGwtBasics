@@ -7,6 +7,9 @@
 	<!-- We need the JUnit module in the main module, -->
 	<!-- otherwise eclipse complains (Google plugin bug?) -->
 	<inherits name="com.google.gwt.junit.JUnit" />
+	
+	<!-- Gin -->
+	<inherits name="com.google.gwt.inject.Inject" />
 
 	<!-- Inherit the default GWT style sheet. You can change -->
 	<!-- the theme of your GWT application by uncommenting -->
