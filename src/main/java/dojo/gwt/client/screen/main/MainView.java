@@ -10,4 +10,8 @@ public class MainView extends FlowPanel {
 		add(label);
 	}
 
+	public void setWord(String word) {
+		add(new Label(word));
+	}
+
 }
