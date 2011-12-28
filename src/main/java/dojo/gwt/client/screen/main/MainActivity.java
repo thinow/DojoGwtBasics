@@ -1,23 +1,32 @@
 package dojo.gwt.client.screen.main;
 
+import java.util.Date;
+
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.inject.Inject;
 
+import dojo.gwt.client.ClientFactory;
 import dojo.gwt.client.place.MainPlace;
+import dojo.gwt.client.screen.main.MainView.Presenter;
 
-public class MainActivity extends AbstractActivity {
+public class MainActivity extends AbstractActivity implements Presenter {
 
 	private MainView view;
 	private MainPlace place;
 
-	public MainActivity(MainPlace place) {
+	@Inject
+	private ClientFactory clientFactory;
+
+	public void setPlace(MainPlace place) {
 		this.place = place;
 	}
 
 	public void start(AcceptsOneWidget parent, EventBus eventBus) {
 		view = new MainView();
+		view.setPresenter(this);
 		view.setWord(place.getToken());
 
 		parent.setWidget(view);
@@ -25,4 +34,11 @@ public class MainActivity extends AbstractActivity {
 		GWT.log(getClass().getName() + " has started successfully !");
 	}
 
+	@Override
+	public void onButtonClick() {
+		String now = String.valueOf(new Date().getTime());
+
+		MainPlace nextPlace = new MainPlace(now);
+		clientFactory.getPlaceController().goTo(nextPlace);
+	}
 }

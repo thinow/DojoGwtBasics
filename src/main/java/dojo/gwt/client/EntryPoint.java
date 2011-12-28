@@ -40,7 +40,7 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 	}
 
 	private void registerActivities() {
-		ActivityMapper mapper = new ActivityMapper();
+		ActivityMapper mapper = new ActivityMapper(injector);
 
 		ActivityManager manager = new ActivityManager(mapper, eventBus);
 		manager.setDisplay(bodyPanel);
