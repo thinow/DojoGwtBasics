@@ -22,12 +22,10 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 	private EventBus eventBus = new SimpleEventBus();
 	private Place defaultPlace = new MainPlace("DEFAULT");
 
-	private ClientFactory clientFactory;
-
-	private Injector injector = GWT.create(Injector.class);
+	private Injector injector;
 
 	public EntryPoint() {
-		clientFactory = injector.getClientFactory();
+		injector = GWT.create(Injector.class);
 	}
 
 	@Override
@@ -49,6 +47,8 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 	}
 
 	private void handleHistory() {
+		ClientFactory clientFactory = injector.getClientFactory();
+
 		PlaceController placeController = new PlaceController(eventBus);
 		clientFactory.setPlaceController(placeController);
 
