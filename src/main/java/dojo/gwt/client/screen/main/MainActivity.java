@@ -14,24 +14,25 @@ import dojo.gwt.client.screen.main.MainView.Presenter;
 
 public class MainActivity extends AbstractActivity implements Presenter {
 
-	private MainView view;
-	private MainPlace place;
-
 	@Inject
 	private ClientFactory clientFactory;
 
-	public void setPlace(MainPlace place) {
-		this.place = place;
-	}
+	@Inject
+	private MainView view;
+
+	private MainPlace place;
 
 	public void start(AcceptsOneWidget parent, EventBus eventBus) {
-		view = new MainView();
 		view.setPresenter(this);
 		view.setWord(place.getToken());
 
 		parent.setWidget(view);
 
 		GWT.log(getClass().getName() + " has started successfully !");
+	}
+
+	public void setPlace(MainPlace place) {
+		this.place = place;
 	}
 
 	@Override
