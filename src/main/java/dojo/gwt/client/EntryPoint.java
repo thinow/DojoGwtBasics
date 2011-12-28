@@ -1,7 +1,6 @@
 package dojo.gwt.client;
 
 import com.google.gwt.activity.shared.ActivityManager;
-import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.place.shared.Place;
@@ -15,7 +14,7 @@ import dojo.gwt.client.place.MainPlace;
 import dojo.gwt.client.place.mapper.ActivityMapper;
 import dojo.gwt.client.place.mapper.PlaceHistoryMapper;
 
-public class DojoGwtBasics implements EntryPoint {
+public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 
 	private SimplePanel bodyPanel = new SimplePanel();
 
