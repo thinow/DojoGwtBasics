@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.web.bindery.event.shared.EventBus;
 
+import dojo.gwt.client.injection.Injector;
 import dojo.gwt.client.place.MainPlace;
 import dojo.gwt.client.place.mapper.ActivityMapper;
 import dojo.gwt.client.place.mapper.PlaceHistoryMapper;
@@ -20,6 +21,14 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 
 	private EventBus eventBus = new SimpleEventBus();
 	private Place defaultPlace = new MainPlace("DEFAULT");
+
+	private ClientFactory clientFactory;
+
+	private Injector injector = GWT.create(Injector.class);
+
+	public EntryPoint() {
+		clientFactory = injector.getClientFactory();
+	}
 
 	@Override
 	public void onModuleLoad() {
@@ -41,6 +50,7 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 
 	private void handleHistory() {
 		PlaceController placeController = new PlaceController(eventBus);
+		clientFactory.setPlaceController(placeController);
 
 		PlaceHistoryMapper mapper = GWT.create(PlaceHistoryMapper.class);
 

@@ -1,6 +1,7 @@
 package dojo.gwt.client.screen.main;
 
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
@@ -20,6 +21,8 @@ public class MainActivity extends AbstractActivity {
 		view.setWord(place.getToken());
 
 		parent.setWidget(view);
+
+		GWT.log(getClass().getName() + " has started successfully !");
 	}
 
 }
