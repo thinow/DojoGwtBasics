@@ -12,22 +12,21 @@ import com.google.web.bindery.event.shared.EventBus;
 
 import dojo.gwt.client.injection.ClientFactory;
 import dojo.gwt.client.injection.Injector;
-import dojo.gwt.client.place.MainPlace;
+import dojo.gwt.client.place.MenuPlace;
 import dojo.gwt.client.place.mapper.ActivityMapper;
 import dojo.gwt.client.place.mapper.PlaceHistoryMapper;
 
+/**
+ * Point d'entrée de la WebApp GWT.
+ */
 public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 
 	private SimplePanel bodyPanel = new SimplePanel();
 
 	private EventBus eventBus = new SimpleEventBus();
-	private Place defaultPlace = new MainPlace("DEFAULT");
+	private Place defaultPlace = new MenuPlace();
 
-	private Injector injector;
-
-	public EntryPoint() {
-		injector = GWT.create(Injector.class);
-	}
+	private Injector injector = GWT.create(Injector.class);
 
 	@Override
 	public void onModuleLoad() {

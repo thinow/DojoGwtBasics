@@ -4,6 +4,7 @@ import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 
 import dojo.gwt.client.screen.main.MainActivity;
+import dojo.gwt.client.screen.menu.MenuActivity;
 
 /**
  * Gestionnaire des instances injectées.
@@ -14,5 +15,7 @@ public interface Injector extends Ginjector {
 	ClientFactory getClientFactory();
 
 	MainActivity getMainActivity();
+
+	MenuActivity getMenuActivity();
 
 }
