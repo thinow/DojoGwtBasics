@@ -7,16 +7,6 @@
 
   <!-- Servlets -->
   <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>dojo.gwt.server.GreetingServiceImpl</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/DojoGwtBasics/greet</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
     <servlet-name>timeServlet</servlet-name>
     <servlet-class>dojo.gwt.server.TimeServiceImpl</servlet-class>
   </servlet>
