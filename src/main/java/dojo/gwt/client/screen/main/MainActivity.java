@@ -8,7 +8,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
-import dojo.gwt.client.ClientFactory;
+import dojo.gwt.client.injection.ClientFactory;
 import dojo.gwt.client.place.MainPlace;
 import dojo.gwt.client.screen.main.MainView.Presenter;
 

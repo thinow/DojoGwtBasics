@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.web.bindery.event.shared.EventBus;
 
+import dojo.gwt.client.injection.ClientFactory;
 import dojo.gwt.client.injection.Injector;
 import dojo.gwt.client.place.MainPlace;
 import dojo.gwt.client.place.mapper.ActivityMapper;

@@ -3,7 +3,6 @@ package dojo.gwt.client.injection;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Singleton;
 
-import dojo.gwt.client.ClientFactory;
 import dojo.gwt.client.screen.main.MainView;
 
 public class InjectorBinder extends AbstractGinModule {

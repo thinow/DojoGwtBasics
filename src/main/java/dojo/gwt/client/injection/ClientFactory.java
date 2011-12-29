@@ -1,4 +1,4 @@
-package dojo.gwt.client;
+package dojo.gwt.client.injection;
 
 import com.google.gwt.place.shared.PlaceController;
 
