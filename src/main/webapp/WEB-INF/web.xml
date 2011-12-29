@@ -15,6 +15,16 @@
     <servlet-name>greetServlet</servlet-name>
     <url-pattern>/DojoGwtBasics/greet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>timeServlet</servlet-name>
+    <servlet-class>dojo.gwt.server.TimeServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>timeServlet</servlet-name>
+    <url-pattern>/DojoGwtBasics/time</url-pattern>
+  </servlet-mapping>
 
   <!-- Default page to serve -->
   <welcome-file-list>
