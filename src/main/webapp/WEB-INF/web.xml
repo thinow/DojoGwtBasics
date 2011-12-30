@@ -5,20 +5,28 @@
 
 <web-app>
 
-  <!-- Servlets -->
-  <servlet>
-    <servlet-name>timeServlet</servlet-name>
-    <servlet-class>dojo.gwt.server.TimeServiceImpl</servlet-class>
-  </servlet>
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>movieServlet</servlet-name>
+		<servlet-class>dojo.gwt.server.MovieServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>movieServlet</servlet-name>
+		<url-pattern>/DojoGwtBasics/movie</url-pattern>
+	</servlet-mapping>
 
-  <servlet-mapping>
-    <servlet-name>timeServlet</servlet-name>
-    <url-pattern>/DojoGwtBasics/time</url-pattern>
-  </servlet-mapping>
+	<servlet>
+		<servlet-name>timeServlet</servlet-name>
+		<servlet-class>dojo.gwt.server.TimeServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>timeServlet</servlet-name>
+		<url-pattern>/DojoGwtBasics/time</url-pattern>
+	</servlet-mapping>
 
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>DojoGwtBasics.html</welcome-file>
-  </welcome-file-list>
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>DojoGwtBasics.html</welcome-file>
+	</welcome-file-list>
 
 </web-app>
