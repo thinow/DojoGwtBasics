@@ -6,5 +6,6 @@
 	</ui:style>
 	<g:HTMLPanel>
 		<h1>TopView !</h1>
+		<g:FlowPanel ui:field="listPanel" />
 	</g:HTMLPanel>
 </ui:UiBinder> 
