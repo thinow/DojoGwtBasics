@@ -6,6 +6,8 @@ import com.google.inject.Singleton;
 import dojo.gwt.client.screen.main.MainView;
 import dojo.gwt.client.screen.menu.MenuView;
 import dojo.gwt.client.screen.menu.MenuViewImpl;
+import dojo.gwt.client.screen.top.TopView;
+import dojo.gwt.client.screen.top.TopViewImpl;
 
 public class InjectorBinder extends AbstractGinModule {
 
@@ -14,6 +16,7 @@ public class InjectorBinder extends AbstractGinModule {
 		bind(ClientFactory.class).in(Singleton.class);
 		bind(MainView.class).in(Singleton.class);
 		bind(MenuView.class).to(MenuViewImpl.class);
+		bind(TopView.class).to(TopViewImpl.class);
 	}
 
 }

@@ -1,5 +1,6 @@
 package dojo.gwt.client.screen.menu;
 
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.PushButton;
 
@@ -8,13 +9,12 @@ public class MenuViewImpl extends FlowPanel implements MenuView {
 	@SuppressWarnings("unused")
 	private Presenter presenter;
 
-	public MenuViewImpl() {
-		addButton("Top 10 des films");
-		addButton("Rechercher un film");
-	}
+	@Override
+	public void addButton(String buttonText, ClickHandler handler) {
+		PushButton button = new PushButton(buttonText);
+		button.addClickHandler(handler);
 
-	private void addButton(String buttonText) {
-		add(new PushButton(buttonText));
+		this.add(button);
 	}
 
 	@Override
