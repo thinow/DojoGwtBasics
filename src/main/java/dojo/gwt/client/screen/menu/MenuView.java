@@ -8,4 +8,6 @@ public interface MenuView extends IsWidget {
 
 	}
 
+	void setPresenter(Presenter presenter);
+
 }

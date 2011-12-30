@@ -18,6 +18,8 @@ public class MenuActivity extends AbstractActivity implements Presenter {
 
 	@Override
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
+		view.setPresenter(this);
+
 		panel.setWidget(view);
 	}
 
