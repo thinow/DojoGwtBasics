@@ -19,6 +19,7 @@ import dojo.gwt.client.injection.Injector;
 import dojo.gwt.client.place.MenuPlace;
 import dojo.gwt.client.place.mapper.ActivityMapper;
 import dojo.gwt.client.place.mapper.PlaceHistoryMapper;
+import dojo.gwt.client.widget.Spinner;
 
 /**
  * Point d'entrée de la WebApp GWT.
@@ -32,6 +33,8 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint,
 	private Place defaultPlace = new MenuPlace();
 
 	private Injector injector = GWT.create(Injector.class);
+
+	private Spinner spinner = new Spinner();
 
 	@Override
 	public void onModuleLoad() {
@@ -72,12 +75,12 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint,
 
 	@Override
 	public void onAsynchronousTreatmentStarted() {
-		GWT.log("Traitement asynchrone : DEBUT");
+		spinner.show();
 	}
 
 	@Override
 	public void onAsynchronousTreatmentFinished() {
-		GWT.log("Traitement asynchrone : FIN");
+		spinner.hide();
 	}
 
 }
