@@ -7,7 +7,7 @@ import com.google.gwt.event.shared.GwtEvent;
  */
 public class AsyncFinishedEvent extends GwtEvent<AsyncFinishedHandler> {
 
-	private static final Type<AsyncFinishedHandler> TYPE = new Type<AsyncFinishedHandler>();
+	public static final Type<AsyncFinishedHandler> TYPE = new Type<AsyncFinishedHandler>();
 
 	@Override
 	public Type<AsyncFinishedHandler> getAssociatedType() {

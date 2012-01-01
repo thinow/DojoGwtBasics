@@ -10,6 +10,10 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.web.bindery.event.shared.EventBus;
 
+import dojo.gwt.client.event.async.finished.AsyncFinishedEvent;
+import dojo.gwt.client.event.async.finished.AsyncFinishedHandler;
+import dojo.gwt.client.event.async.started.AsyncStartedEvent;
+import dojo.gwt.client.event.async.started.AsyncStartedHandler;
 import dojo.gwt.client.injection.ClientFactory;
 import dojo.gwt.client.injection.Injector;
 import dojo.gwt.client.place.MenuPlace;
@@ -19,7 +23,8 @@ import dojo.gwt.client.place.mapper.PlaceHistoryMapper;
 /**
  * Point d'entrée de la WebApp GWT.
  */
-public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
+public class EntryPoint implements com.google.gwt.core.client.EntryPoint,
+		AsyncStartedHandler, AsyncFinishedHandler {
 
 	private SimplePanel bodyPanel = new SimplePanel();
 
@@ -32,6 +37,7 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 	public void onModuleLoad() {
 		injectBodyPanel();
 		registerActivities();
+		registerWaitingMessagesEvents();
 		handleHistory();
 	}
 
@@ -46,6 +52,11 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 		manager.setDisplay(bodyPanel);
 	}
 
+	private void registerWaitingMessagesEvents() {
+		eventBus.addHandler(AsyncStartedEvent.TYPE, this);
+		eventBus.addHandler(AsyncFinishedEvent.TYPE, this);
+	}
+
 	private void handleHistory() {
 		ClientFactory clientFactory = injector.getClientFactory();
 
@@ -57,6 +68,16 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 		PlaceHistoryHandler handler = new PlaceHistoryHandler(mapper);
 		handler.register(placeController, eventBus, defaultPlace);
 		handler.handleCurrentHistory();
+	}
+
+	@Override
+	public void onAsynchronousTreatmentStarted() {
+		GWT.log("Traitement asynchrone : DEBUT");
+	}
+
+	@Override
+	public void onAsynchronousTreatmentFinished() {
+		GWT.log("Traitement asynchrone : FIN");
 	}
 
 }
