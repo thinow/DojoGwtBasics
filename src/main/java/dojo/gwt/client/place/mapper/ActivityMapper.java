@@ -4,10 +4,8 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.place.shared.Place;
 
 import dojo.gwt.client.injection.Injector;
-import dojo.gwt.client.place.MainPlace;
 import dojo.gwt.client.place.MenuPlace;
 import dojo.gwt.client.place.TopPlace;
-import dojo.gwt.client.screen.main.MainActivity;
 import dojo.gwt.client.screen.menu.MenuActivity;
 import dojo.gwt.client.screen.top.TopActivity;
 
@@ -24,10 +22,7 @@ public class ActivityMapper implements
 	public Activity getActivity(Place place) {
 		Activity activity = null;
 
-		if (place instanceof MainPlace) {
-			activity = injector.getMainActivity();
-			((MainActivity) activity).setPlace((MainPlace) place);
-		} else if (place instanceof MenuPlace) {
+		if (place instanceof MenuPlace) {
 			activity = injector.getMenuActivity();
 			((MenuActivity) activity).setPlace((MenuPlace) place);
 		} else if (place instanceof TopPlace) {
