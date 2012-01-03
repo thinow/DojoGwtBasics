@@ -11,6 +11,6 @@ public interface MovieService extends RemoteService {
 	/**
 	 * Récupère les meilleurs films.
 	 */
-	MovieReference[] getTopMovies(Integer count);
+	MovieReference[] getTopMovies(Integer count) throws Exception;
 
 }
