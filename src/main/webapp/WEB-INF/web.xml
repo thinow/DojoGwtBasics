@@ -7,12 +7,12 @@
 
 	<!-- Servlets -->
 	<servlet>
-		<servlet-name>movieServlet</servlet-name>
+		<servlet-name>beerServlet</servlet-name>
 		<servlet-class>dojo.gwt.server.BeerServiceImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>movieServlet</servlet-name>
-		<url-pattern>/DojoGwtBasics/movie</url-pattern>
+		<servlet-name>beerServlet</servlet-name>
+		<url-pattern>/DojoGwtBasics/beer</url-pattern>
 	</servlet-mapping>
 
 	<!-- Default page to serve -->

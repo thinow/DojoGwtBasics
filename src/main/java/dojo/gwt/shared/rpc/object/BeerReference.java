@@ -3,8 +3,8 @@ package dojo.gwt.shared.rpc.object;
 import java.io.Serializable;
 
 /**
- * Référence d'un objet film. Contient uniquement un identifiant permettant
- * d'identifier un film, ainsi quelques données affichées à l'écran.
+ * Référence d'un objet bière. Contient uniquement un identifiant permettant
+ * d'identifier une bière, ainsi quelques données affichées à l'écran.
  */
 public class BeerReference implements Serializable {
 

@@ -28,8 +28,8 @@ public class MenuActivity extends AbstractActivity implements Presenter {
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		view.setPresenter(this);
 
-		view.addButton("Top 10 des films", goTo(new TopPlace(10)));
-		view.addButton("Rechercher un film", goTo(Place.NOWHERE));
+		view.addButton("Top 10 des bières", goTo(new TopPlace(10)));
+		view.addButton("Rechercher un bière", goTo(Place.NOWHERE));
 
 		panel.setWidget(view);
 	}

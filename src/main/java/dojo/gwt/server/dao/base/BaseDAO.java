@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import org.apache.commons.io.IOUtils;
 
 public class BaseDAO {
-	private static final String DB_URL = "jdbc:h2:mem:movie";
+	private static final String DB_URL = "jdbc:h2:mem:beer";
 
 	private static final String DB_LOGIN = "sa";
 	private static final String DB_PASS = "";

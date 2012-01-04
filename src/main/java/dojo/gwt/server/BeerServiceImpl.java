@@ -15,29 +15,29 @@ public class BeerServiceImpl extends RemoteServiceServlet implements
 
 	private static final long serialVersionUID = 4685407513958591487L;
 
-	private BeerDAO movieDAO = new BeerDAO();
+	private BeerDAO beerDAO = new BeerDAO();
 
 	@Override
-	public BeerReference[] getTopMovies(Integer count) throws Exception {
-		List<BeerDataObject> movies = movieDAO.getBestMovies(count);
+	public BeerReference[] getTopBeers(Integer count) throws Exception {
+		List<BeerDataObject> beers = beerDAO.getBestBeers(count);
 
-		return moviesReferencesOf(movies);
+		return beersReferencesOf(beers);
 	}
 
-	private BeerReference[] moviesReferencesOf(List<BeerDataObject> movies) {
-		int size = movies.size();
+	private BeerReference[] beersReferencesOf(List<BeerDataObject> beers) {
+		int size = beers.size();
 		List<BeerReference> references = new ArrayList<BeerReference>(size);
-		for (BeerDataObject movie : movies) {
-			references.add(movieReferenceOf(movie));
+		for (BeerDataObject beer : beers) {
+			references.add(beerReferenceOf(beer));
 		}
 
 		return references.toArray(new BeerReference[size]);
 	}
 
-	private BeerReference movieReferenceOf(BeerDataObject movie) {
+	private BeerReference beerReferenceOf(BeerDataObject beer) {
 		BeerReference reference = new BeerReference();
-		reference.setId(movie.getId());
-		reference.setLabel(movie.getLabel());
+		reference.setId(beer.getId());
+		reference.setLabel(beer.getLabel());
 
 		return reference;
 	}

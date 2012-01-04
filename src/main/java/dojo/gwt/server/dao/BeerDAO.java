@@ -12,12 +12,12 @@ import dojo.gwt.server.dao.object.BeerDataObject;
 
 public class BeerDAO extends BaseDAO {
 
-	public BeerDataObject getMovie(String id) throws Exception {
+	public BeerDataObject getBeer(String id) throws Exception {
 		Connection connection = getConnection();
 
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT id, label, description, grade");
-		sql.append(" FROM movie");
+		sql.append(" FROM beer");
 		sql.append(" WHERE id = ?");
 		String query = sql.toString();
 
@@ -27,18 +27,18 @@ public class BeerDAO extends BaseDAO {
 		ResultSet result = statement.executeQuery();
 
 		if (!atLeastOneRowIn(result)) {
-			throw new IllegalStateException("Aucun film trouvé pour " + id);
+			throw new IllegalStateException("Aucune bière trouvée pour " + id);
 		}
 
-		return mapMovieDataObjectFrom(result);
+		return mapBeerDataObjectFrom(result);
 	}
 
-	public List<BeerDataObject> getBestMovies(int count) throws Exception {
+	public List<BeerDataObject> getBestBeers(int count) throws Exception {
 		Connection connection = getConnection();
 
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT TOP ? id, label, description, grade");
-		sql.append(" FROM movie");
+		sql.append(" FROM beer");
 		sql.append(" ORDER BY grade DESC");
 		String query = sql.toString();
 
@@ -47,28 +47,28 @@ public class BeerDAO extends BaseDAO {
 
 		ResultSet result = statement.executeQuery();
 
-		List<BeerDataObject> movies = new ArrayList<BeerDataObject>(count);
+		List<BeerDataObject> beers = new ArrayList<BeerDataObject>(count);
 		while (result.next()) {
-			movies.add(mapMovieDataObjectFrom(result));
+			beers.add(mapBeerDataObjectFrom(result));
 		}
 
-		return movies;
+		return beers;
 	}
 
 	private boolean atLeastOneRowIn(ResultSet result) throws SQLException {
 		return result.next();
 	}
 
-	private BeerDataObject mapMovieDataObjectFrom(ResultSet result)
+	private BeerDataObject mapBeerDataObjectFrom(ResultSet result)
 			throws SQLException {
 
-		BeerDataObject movie = new BeerDataObject();
-		movie.setId(result.getString("id"));
-		movie.setLabel(result.getString("label"));
-		movie.setDescription(result.getString("description"));
-		movie.setGrade(result.getDouble("grade"));
+		BeerDataObject beer = new BeerDataObject();
+		beer.setId(result.getString("id"));
+		beer.setLabel(result.getString("label"));
+		beer.setDescription(result.getString("description"));
+		beer.setGrade(result.getDouble("grade"));
 
-		return movie;
+		return beer;
 	}
 
 }

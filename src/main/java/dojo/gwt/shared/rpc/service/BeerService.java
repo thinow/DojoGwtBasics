@@ -5,12 +5,12 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import dojo.gwt.shared.rpc.object.BeerReference;
 
-@RemoteServiceRelativePath("movie")
+@RemoteServiceRelativePath("beer")
 public interface BeerService extends RemoteService {
 
 	/**
-	 * Récupère les meilleurs films.
+	 * Récupère les meilleurs bières.
 	 */
-	BeerReference[] getTopMovies(Integer count) throws Exception;
+	BeerReference[] getTopBeers(Integer count) throws Exception;
 
 }

@@ -14,7 +14,7 @@ public interface TopView extends IsWidget {
 	/** Retire tous les éléments de la liste. */
 	void clearList();
 
-	/** Ajoute un film dans la liste. */
-	void addMovie(String label, ClickHandler handler);
+	/** Ajoute une bière dans la liste. */
+	void addBeer(String label, ClickHandler handler);
 
 }

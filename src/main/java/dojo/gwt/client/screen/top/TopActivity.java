@@ -24,7 +24,7 @@ public class TopActivity extends AbstractActivity implements Presenter {
 	private TopView view;
 
 	@Inject
-	private BeerServiceAsync movieService;
+	private BeerServiceAsync beerService;
 
 	private EventBus eventBus;
 
@@ -43,29 +43,29 @@ public class TopActivity extends AbstractActivity implements Presenter {
 		eventBus.fireEvent(new AsyncStartedEvent());
 
 		Integer count = place.getCount();
-		movieService.getTopMovies(count, new AsyncCallback<BeerReference[]>() {
+		beerService.getTopBeers(count, new AsyncCallback<BeerReference[]>() {
 
 			@Override
 			public void onSuccess(BeerReference[] result) {
-				displayMovies(result);
+				displayBeers(result);
 				eventBus.fireEvent(new AsyncFinishedEvent());
 			}
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Erreur lors de la récupération des films");
+				Window.alert("Erreur lors de la récupération des bières");
 				eventBus.fireEvent(new AsyncFinishedEvent());
 			}
 		});
 	}
 
-	private void displayMovies(BeerReference[] movies) {
-		for (BeerReference movie : movies) {
-			view.addMovie(movie.getLabel(), goTo(movie));
+	private void displayBeers(BeerReference[] beers) {
+		for (BeerReference beer : beers) {
+			view.addBeer(beer.getLabel(), goTo(beer));
 		}
 	}
 
-	private ClickHandler goTo(BeerReference movie) {
+	private ClickHandler goTo(BeerReference beer) {
 		return new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {

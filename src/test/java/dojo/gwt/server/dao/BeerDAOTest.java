@@ -19,36 +19,36 @@ public class BeerDAOTest {
 	}
 
 	@Test
-	public void getOneSpecificMovie() throws Exception {
+	public void getOneSpecificBeer() throws Exception {
 		// given
-		String expectedMovieID = "1";
+		String expectedBeerID = "1";
 
 		// when
-		BeerDataObject movie = dao.getMovie(expectedMovieID);
+		BeerDataObject beer = dao.getBeer(expectedBeerID);
 
 		// then
-		assertThat(movie).isNotNull();
-		assertThat(movie.getId()).isEqualTo(expectedMovieID);
-		assertThat(movie.getLabel()).isEqualTo("Mon film");
-		assertThat(movie.getDescription()).isEqualTo("C'est un beau film...");
-		assertThat(movie.getGrade()).isEqualTo(0.75);
+		assertThat(beer).isNotNull();
+		assertThat(beer.getId()).isEqualTo(expectedBeerID);
+		assertThat(beer.getLabel()).isEqualTo("Une bière");
+		assertThat(beer.getDescription()).isEqualTo("C'est une bonne bière...");
+		assertThat(beer.getGrade()).isEqualTo(0.75);
 	}
 
 	@Test
-	public void betterGradedMovies() throws Exception {
+	public void betterGradedBeers() throws Exception {
 		// given
 		int expectedCount = 2;
 
 		// when
-		List<BeerDataObject> movies = dao.getBestMovies(expectedCount);
+		List<BeerDataObject> beers = dao.getBestBeers(expectedCount);
 
 		// then
-		assertThat(movies).isNotNull().hasSize(expectedCount);
+		assertThat(beers).isNotNull().hasSize(expectedCount);
 
-		assertThat(movies.get(0)).isNotNull();
-		assertThat(movies.get(0).getId()).isEqualTo("3");
+		assertThat(beers.get(0)).isNotNull();
+		assertThat(beers.get(0).getId()).isEqualTo("3");
 
-		assertThat(movies.get(1)).isNotNull();
-		assertThat(movies.get(1).getId()).isEqualTo("2");
+		assertThat(beers.get(1)).isNotNull();
+		assertThat(beers.get(1).getId()).isEqualTo("2");
 	}
 }

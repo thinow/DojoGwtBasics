@@ -37,7 +37,7 @@ public class TopViewImpl extends Composite implements TopView {
 	}
 
 	@Override
-	public void addMovie(String label, ClickHandler handler) {
+	public void addBeer(String label, ClickHandler handler) {
 		PushButton button = new PushButton();
 		button.setText(label);
 		button.addClickHandler(handler);
