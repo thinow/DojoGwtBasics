@@ -3,14 +3,14 @@ package dojo.gwt.shared.rpc.service;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-import dojo.gwt.shared.rpc.object.MovieReference;
+import dojo.gwt.shared.rpc.object.BeerReference;
 
 @RemoteServiceRelativePath("movie")
-public interface MovieService extends RemoteService {
+public interface BeerService extends RemoteService {
 
 	/**
 	 * Récupère les meilleurs films.
 	 */
-	MovieReference[] getTopMovies(Integer count) throws Exception;
+	BeerReference[] getTopMovies(Integer count) throws Exception;
 
 }

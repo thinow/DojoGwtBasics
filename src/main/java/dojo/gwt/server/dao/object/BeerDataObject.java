@@ -1,6 +1,6 @@
 package dojo.gwt.server.dao.object;
 
-public class MovieDataObject {
+public class BeerDataObject {
 
 	private String id;
 	private String label;

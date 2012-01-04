@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Référence d'un objet film. Contient uniquement un identifiant permettant
  * d'identifier un film, ainsi quelques données affichées à l'écran.
  */
-public class MovieReference implements Serializable {
+public class BeerReference implements Serializable {
 
 	private static final long serialVersionUID = -2473930217233054067L;
 

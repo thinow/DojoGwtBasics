@@ -13,8 +13,8 @@ import dojo.gwt.client.event.async.finished.AsyncFinishedEvent;
 import dojo.gwt.client.event.async.started.AsyncStartedEvent;
 import dojo.gwt.client.place.TopPlace;
 import dojo.gwt.client.screen.top.TopView.Presenter;
-import dojo.gwt.shared.rpc.object.MovieReference;
-import dojo.gwt.shared.rpc.service.MovieServiceAsync;
+import dojo.gwt.shared.rpc.object.BeerReference;
+import dojo.gwt.shared.rpc.service.BeerServiceAsync;
 
 public class TopActivity extends AbstractActivity implements Presenter {
 
@@ -24,7 +24,7 @@ public class TopActivity extends AbstractActivity implements Presenter {
 	private TopView view;
 
 	@Inject
-	private MovieServiceAsync movieService;
+	private BeerServiceAsync movieService;
 
 	private EventBus eventBus;
 
@@ -43,10 +43,10 @@ public class TopActivity extends AbstractActivity implements Presenter {
 		eventBus.fireEvent(new AsyncStartedEvent());
 
 		Integer count = place.getCount();
-		movieService.getTopMovies(count, new AsyncCallback<MovieReference[]>() {
+		movieService.getTopMovies(count, new AsyncCallback<BeerReference[]>() {
 
 			@Override
-			public void onSuccess(MovieReference[] result) {
+			public void onSuccess(BeerReference[] result) {
 				displayMovies(result);
 				eventBus.fireEvent(new AsyncFinishedEvent());
 			}
@@ -59,13 +59,13 @@ public class TopActivity extends AbstractActivity implements Presenter {
 		});
 	}
 
-	private void displayMovies(MovieReference[] movies) {
-		for (MovieReference movie : movies) {
+	private void displayMovies(BeerReference[] movies) {
+		for (BeerReference movie : movies) {
 			view.addMovie(movie.getLabel(), goTo(movie));
 		}
 	}
 
-	private ClickHandler goTo(MovieReference movie) {
+	private ClickHandler goTo(BeerReference movie) {
 		return new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {

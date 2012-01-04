@@ -7,15 +7,15 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import dojo.gwt.server.dao.object.MovieDataObject;
+import dojo.gwt.server.dao.object.BeerDataObject;
 
-public class MovieDAOTest {
+public class BeerDAOTest {
 
-	private MovieDAO dao;
+	private BeerDAO dao;
 
 	@Before
 	public void setUp() throws Exception {
-		dao = new MovieDAO();
+		dao = new BeerDAO();
 	}
 
 	@Test
@@ -24,7 +24,7 @@ public class MovieDAOTest {
 		String expectedMovieID = "1";
 
 		// when
-		MovieDataObject movie = dao.getMovie(expectedMovieID);
+		BeerDataObject movie = dao.getMovie(expectedMovieID);
 
 		// then
 		assertThat(movie).isNotNull();
@@ -40,7 +40,7 @@ public class MovieDAOTest {
 		int expectedCount = 2;
 
 		// when
-		List<MovieDataObject> movies = dao.getBestMovies(expectedCount);
+		List<BeerDataObject> movies = dao.getBestMovies(expectedCount);
 
 		// then
 		assertThat(movies).isNotNull().hasSize(expectedCount);

@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dojo.gwt.server.dao.base.BaseDAO;
-import dojo.gwt.server.dao.object.MovieDataObject;
+import dojo.gwt.server.dao.object.BeerDataObject;
 
-public class MovieDAO extends BaseDAO {
+public class BeerDAO extends BaseDAO {
 
-	public MovieDataObject getMovie(String id) throws Exception {
+	public BeerDataObject getMovie(String id) throws Exception {
 		Connection connection = getConnection();
 
 		StringBuilder sql = new StringBuilder();
@@ -33,7 +33,7 @@ public class MovieDAO extends BaseDAO {
 		return mapMovieDataObjectFrom(result);
 	}
 
-	public List<MovieDataObject> getBestMovies(int count) throws Exception {
+	public List<BeerDataObject> getBestMovies(int count) throws Exception {
 		Connection connection = getConnection();
 
 		StringBuilder sql = new StringBuilder();
@@ -47,7 +47,7 @@ public class MovieDAO extends BaseDAO {
 
 		ResultSet result = statement.executeQuery();
 
-		List<MovieDataObject> movies = new ArrayList<MovieDataObject>(count);
+		List<BeerDataObject> movies = new ArrayList<BeerDataObject>(count);
 		while (result.next()) {
 			movies.add(mapMovieDataObjectFrom(result));
 		}
@@ -59,10 +59,10 @@ public class MovieDAO extends BaseDAO {
 		return result.next();
 	}
 
-	private MovieDataObject mapMovieDataObjectFrom(ResultSet result)
+	private BeerDataObject mapMovieDataObjectFrom(ResultSet result)
 			throws SQLException {
 
-		MovieDataObject movie = new MovieDataObject();
+		BeerDataObject movie = new BeerDataObject();
 		movie.setId(result.getString("id"));
 		movie.setLabel(result.getString("label"));
 		movie.setDescription(result.getString("description"));
