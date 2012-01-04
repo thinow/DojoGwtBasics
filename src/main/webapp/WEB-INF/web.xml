@@ -8,7 +8,7 @@
 	<!-- Servlets -->
 	<servlet>
 		<servlet-name>movieServlet</servlet-name>
-		<servlet-class>dojo.gwt.server.MovieServiceImpl</servlet-class>
+		<servlet-class>dojo.gwt.server.BeerServiceImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>movieServlet</servlet-name>

@@ -10,7 +10,7 @@ import dojo.gwt.server.dao.object.BeerDataObject;
 import dojo.gwt.shared.rpc.object.BeerReference;
 import dojo.gwt.shared.rpc.service.BeerService;
 
-public class MovieServiceImpl extends RemoteServiceServlet implements
+public class BeerServiceImpl extends RemoteServiceServlet implements
 		BeerService {
 
 	private static final long serialVersionUID = 4685407513958591487L;
