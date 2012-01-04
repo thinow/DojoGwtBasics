@@ -12,7 +12,7 @@ import dojo.gwt.server.dao.object.BeerDataObject;
 
 public class BeerDAO extends BaseDAO {
 
-	public BeerDataObject getBeer(String id) throws Exception {
+	public BeerDataObject getBeer(Long id) throws Exception {
 		Connection connection = getConnection();
 
 		StringBuilder sql = new StringBuilder();
@@ -22,7 +22,7 @@ public class BeerDAO extends BaseDAO {
 		String query = sql.toString();
 
 		PreparedStatement statement = connection.prepareStatement(query);
-		statement.setString(1, id);
+		statement.setLong(1, id);
 
 		ResultSet result = statement.executeQuery();
 

@@ -21,17 +21,15 @@ public class BeerDAOTest {
 	@Test
 	public void getOneSpecificBeer() throws Exception {
 		// given
-		String expectedBeerID = "1";
+		Long expectedBeerID = Long.valueOf(1);
 
 		// when
 		BeerDataObject beer = dao.getBeer(expectedBeerID);
 
 		// then
 		assertThat(beer).isNotNull();
-		assertThat(beer.getId()).isEqualTo(expectedBeerID);
-		assertThat(beer.getLabel()).isEqualTo("Une bière");
-		assertThat(beer.getDescription()).isEqualTo("C'est une bonne bière...");
-		assertThat(beer.getGrade()).isEqualTo(0.75);
+		assertThat(beer.getId()).isEqualTo(expectedBeerID.toString());
+		assertThat(beer.getLabel()).isEqualTo("Duvel");
 	}
 
 	@Test
@@ -45,10 +43,12 @@ public class BeerDAOTest {
 		// then
 		assertThat(beers).isNotNull().hasSize(expectedCount);
 
-		assertThat(beers.get(0)).isNotNull();
-		assertThat(beers.get(0).getId()).isEqualTo("3");
+		BeerDataObject firstBeer = beers.get(0);
+		BeerDataObject secondBeer = beers.get(1);
 
-		assertThat(beers.get(1)).isNotNull();
-		assertThat(beers.get(1).getId()).isEqualTo("2");
+		assertThat(firstBeer).isNotNull();
+		assertThat(secondBeer).isNotNull();
+		assertThat(firstBeer.getGrade()).isGreaterThanOrEqualTo(
+				secondBeer.getGrade());
 	}
 }
