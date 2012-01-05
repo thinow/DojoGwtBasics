@@ -45,7 +45,8 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint,
 	}
 
 	private void injectBodyPanel() {
-		RootPanel.get().add(bodyPanel);
+		RootPanel root = RootPanel.get("mainContent");
+		root.add(bodyPanel);
 	}
 
 	private void registerActivities() {
