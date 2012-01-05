@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
@@ -28,8 +29,9 @@ public class MenuActivity extends AbstractActivity implements Presenter {
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		view.setPresenter(this);
 
-		view.addButton("Top 10 des bières", goTo(new TopPlace(10)));
-		view.addButton("Rechercher un bière", goTo(Place.NOWHERE));
+		view.addButton("Les 10 meilleures bières", goTo(new TopPlace(10)));
+		view.addButton("Les 10 bières les plus fortes", goTo(Place.NOWHERE));
+		view.addButton("Rechercher une bière", goTo(Place.NOWHERE));
 
 		panel.setWidget(view);
 	}
@@ -38,6 +40,11 @@ public class MenuActivity extends AbstractActivity implements Presenter {
 		return new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
+				if (nextPlace == Place.NOWHERE) {
+					Window.alert("Oops ! Cette page n'existe pas !");
+					return;
+				}
+
 				clientFactory.getPlaceController().goTo(nextPlace);
 			}
 		};
