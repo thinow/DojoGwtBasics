@@ -2,13 +2,14 @@
 	width: 900px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 12px;
-	border: 1px solid #1a1a1a;
+	border-color: #1a1a1a;
+	border-style: solid;
+	border-width: 0 1px 1px 1px;
 }
 
 #header {
-	height: 80px;
-	background-color: #cecece;
+	height: 160px;
+	background-image: url("header.jpg");
 }
 
 #mainContent {
