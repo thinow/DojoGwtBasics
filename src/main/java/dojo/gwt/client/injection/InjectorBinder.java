@@ -3,6 +3,8 @@ package dojo.gwt.client.injection;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Singleton;
 
+import dojo.gwt.client.screen.add.AddView;
+import dojo.gwt.client.screen.add.AddViewImpl;
 import dojo.gwt.client.screen.menu.MenuView;
 import dojo.gwt.client.screen.menu.MenuViewImpl;
 import dojo.gwt.client.screen.top.TopView;
@@ -15,6 +17,7 @@ public class InjectorBinder extends AbstractGinModule {
 		bind(ClientFactory.class).in(Singleton.class);
 		bind(MenuView.class).to(MenuViewImpl.class);
 		bind(TopView.class).to(TopViewImpl.class);
+		bind(AddView.class).to(AddViewImpl.class);
 	}
 
 }
