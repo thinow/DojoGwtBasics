@@ -42,4 +42,19 @@ public class BeerServiceImpl extends RemoteServiceServlet implements
 		return reference;
 	}
 
+	@Override
+	public void addBeer(String label, String description, double grade,
+			double alcohol, String brewery, String country) throws Exception {
+
+		BeerDataObject beer = new BeerDataObject();
+		beer.setLabel(label);
+		beer.setDescription(description);
+		beer.setGrade(grade);
+		beer.setAlcohol(alcohol);
+		beer.setBrewery(brewery);
+		beer.setCountry(country);
+
+		beerDAO.addBeer(beer);
+	}
+
 }

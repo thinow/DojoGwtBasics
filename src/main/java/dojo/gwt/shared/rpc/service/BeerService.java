@@ -13,4 +13,10 @@ public interface BeerService extends RemoteService {
 	 */
 	BeerReference[] getTopBeers(Integer count) throws Exception;
 
+	/**
+	 * Stocke une nouvelle bière dans les données.
+	 */
+	void addBeer(String label, String description, double grade,
+			double alcohol, String brewery, String country) throws Exception;
+
 }
