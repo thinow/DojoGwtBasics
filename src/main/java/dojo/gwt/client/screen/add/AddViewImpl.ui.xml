@@ -1,24 +1,40 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
 	<ui:style>
+		.formPanel {
+			margin: 0 auto;
+			width: 66%;
+		}
 		
+		.field {
+			margin-bottom: 6px;
+			width: 100%;
+		}
 	</ui:style>
+
 	<g:HTMLPanel>
 		<h1>Ajouter une nouvelle bière</h1>
-		<div>
+		<div class="{style.formPanel}">
 			<g:Label text="Libellé" />
-			<g:TextBox ui:field="label" />
+			<g:TextBox ui:field="label" addStyleNames="{style.field}" />
+
 			<g:Label text="Description" />
-			<g:TextArea ui:field="description" />
+			<g:TextArea ui:field="description" addStyleNames="{style.field}" />
+
 			<g:Label text="Degré d'alcool" />
-			<g:TextBox ui:field="alcohol" />
+			<g:TextBox ui:field="alcohol" addStyleNames="{style.field}" />
+
 			<g:Label text="Brasserie" />
-			<g:TextBox ui:field="brewery" />
+			<g:TextBox ui:field="brewery" addStyleNames="{style.field}" />
+
 			<g:Label text="Pays" />
-			<g:ListBox ui:field="country" />
+			<g:ListBox ui:field="country" addStyleNames="{style.field}" />
+
 			<g:Label text="Note" />
-			<g:ListBox ui:field="grade" />
+			<g:ListBox ui:field="grade" addStyleNames="{style.field}" />
+
 			<g:PushButton ui:field="saveButton" text="Créer >>" />
 		</div>
 	</g:HTMLPanel>
