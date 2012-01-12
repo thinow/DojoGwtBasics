@@ -11,6 +11,12 @@ import dojo.gwt.server.dao.object.BeerDataObject;
 
 public class BeerDAOTest {
 
+	private static final String BEER_COUNTRY = "BEER-COUNTRY";
+	private static final String BEER_BREWERY = "BEER-BREWERY";
+	private static final double BEER_ALCOHOL = 8.2;
+	private static final double BEER_GRADE = 5.12;
+	private static final String BEER_DESCRIPTION = "BEER-DESC";
+	private static final String BEER_LABEL = "BEER-LABEL";
 	private BeerDAO dao;
 
 	@Before
@@ -33,7 +39,7 @@ public class BeerDAOTest {
 	}
 
 	@Test
-	public void betterGradedBeers() throws Exception {
+	public void gradestBeers() throws Exception {
 		// given
 		int expectedCount = 2;
 
@@ -50,5 +56,23 @@ public class BeerDAOTest {
 		assertThat(secondBeer).isNotNull();
 		assertThat(firstBeer.getGrade()).isGreaterThanOrEqualTo(
 				secondBeer.getGrade());
+	}
+
+	@Test
+	public void addBeers() throws Exception {
+		// given
+		BeerDataObject beer = new BeerDataObject();
+		beer.setLabel(BEER_LABEL);
+		beer.setDescription(BEER_DESCRIPTION);
+		beer.setGrade(BEER_GRADE);
+		beer.setAlcohol(BEER_ALCOHOL);
+		beer.setBrewery(BEER_BREWERY);
+		beer.setCountry(BEER_COUNTRY);
+
+		// when
+		dao.addBeer(beer);
+
+		// then
+		assertThat(beer.getId()).isNotNull().isNotEmpty();
 	}
 }

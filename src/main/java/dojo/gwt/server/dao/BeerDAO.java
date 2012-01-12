@@ -55,6 +55,10 @@ public class BeerDAO extends BaseDAO {
 		return beers;
 	}
 
+	public void addBeer(BeerDataObject beer) {
+		beer.setId("FAKE-ID");
+	}
+
 	private boolean atLeastOneRowIn(ResultSet result) throws SQLException {
 		return result.next();
 	}
