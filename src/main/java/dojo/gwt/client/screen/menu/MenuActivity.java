@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
 import dojo.gwt.client.injection.ClientFactory;
+import dojo.gwt.client.place.AddPlace;
 import dojo.gwt.client.place.MenuPlace;
 import dojo.gwt.client.place.TopPlace;
 import dojo.gwt.client.screen.menu.MenuView.Presenter;
@@ -29,6 +30,7 @@ public class MenuActivity extends AbstractActivity implements Presenter {
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		view.setPresenter(this);
 
+		view.addButton("Ajouter une bière", goTo(new AddPlace()));
 		view.addButton("Les 10 meilleures bières", goTo(new TopPlace(10)));
 		view.addButton("Les 10 bières les plus fortes", goTo(Place.NOWHERE));
 		view.addButton("Rechercher une bière", goTo(Place.NOWHERE));
