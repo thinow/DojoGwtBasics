@@ -36,7 +36,7 @@ public class BeerServiceImpl extends RemoteServiceServlet implements
 
 	private BeerReference beerReferenceOf(BeerDataObject beer) {
 		BeerReference reference = new BeerReference();
-		reference.setId(beer.getId());
+		reference.setId(String.valueOf(beer.getId()));
 		reference.setLabel(beer.getLabel());
 
 		return reference;

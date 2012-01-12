@@ -11,12 +11,16 @@ import dojo.gwt.server.dao.object.BeerDataObject;
 
 public class BeerDAOTest {
 
-	private static final String BEER_COUNTRY = "BEER-COUNTRY";
-	private static final String BEER_BREWERY = "BEER-BREWERY";
-	private static final double BEER_ALCOHOL = 8.2;
-	private static final double BEER_GRADE = 5.12;
-	private static final String BEER_DESCRIPTION = "BEER-DESC";
-	private static final String BEER_LABEL = "BEER-LABEL";
+	private static final Long DUVEL_BEER_ID = Long.valueOf(1);
+	private static final String DUVEL_BEER_LABEL = "Duvel";
+
+	private static final String NEW_BEER_COUNTRY = "BEER-COUNTRY";
+	private static final String NEW_BEER_BREWERY = "BEER-BREWERY";
+	private static final double NEW_BEER_ALCOHOL = 8.2;
+	private static final double NEW_BEER_GRADE = 5.12;
+	private static final String NEW_BEER_DESCRIPTION = "BEER-DESC";
+	private static final String NEW_BEER_LABEL = "BEER-LABEL";
+
 	private BeerDAO dao;
 
 	@Before
@@ -26,16 +30,13 @@ public class BeerDAOTest {
 
 	@Test
 	public void getOneSpecificBeer() throws Exception {
-		// given
-		Long expectedBeerID = Long.valueOf(1);
-
 		// when
-		BeerDataObject beer = dao.getBeer(expectedBeerID);
+		BeerDataObject beer = dao.getBeer(DUVEL_BEER_ID);
 
 		// then
 		assertThat(beer).isNotNull();
-		assertThat(beer.getId()).isEqualTo(expectedBeerID.toString());
-		assertThat(beer.getLabel()).isEqualTo("Duvel");
+		assertThat(beer.getId()).isEqualTo(DUVEL_BEER_ID);
+		assertThat(beer.getLabel()).isEqualTo(DUVEL_BEER_LABEL);
 	}
 
 	@Test
@@ -62,17 +63,17 @@ public class BeerDAOTest {
 	public void addBeers() throws Exception {
 		// given
 		BeerDataObject beer = new BeerDataObject();
-		beer.setLabel(BEER_LABEL);
-		beer.setDescription(BEER_DESCRIPTION);
-		beer.setGrade(BEER_GRADE);
-		beer.setAlcohol(BEER_ALCOHOL);
-		beer.setBrewery(BEER_BREWERY);
-		beer.setCountry(BEER_COUNTRY);
+		beer.setLabel(NEW_BEER_LABEL);
+		beer.setDescription(NEW_BEER_DESCRIPTION);
+		beer.setGrade(NEW_BEER_GRADE);
+		beer.setAlcohol(NEW_BEER_ALCOHOL);
+		beer.setBrewery(NEW_BEER_BREWERY);
+		beer.setCountry(NEW_BEER_COUNTRY);
 
 		// when
 		dao.addBeer(beer);
 
 		// then
-		assertThat(beer.getId()).isNotNull().isNotEmpty();
+		assertThat(beer.getId()).isNotNull().isGreaterThan(0);
 	}
 }

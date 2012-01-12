@@ -56,7 +56,7 @@ public class BeerDAO extends BaseDAO {
 	}
 
 	public void addBeer(BeerDataObject beer) {
-		beer.setId("FAKE-ID");
+		beer.setId(Long.valueOf(1));
 	}
 
 	private boolean atLeastOneRowIn(ResultSet result) throws SQLException {
@@ -67,7 +67,7 @@ public class BeerDAO extends BaseDAO {
 			throws SQLException {
 
 		BeerDataObject beer = new BeerDataObject();
-		beer.setId(result.getString("id"));
+		beer.setId(result.getLong("id"));
 		beer.setLabel(result.getString("label"));
 		beer.setDescription(result.getString("description"));
 		beer.setGrade(result.getDouble("grade"));
