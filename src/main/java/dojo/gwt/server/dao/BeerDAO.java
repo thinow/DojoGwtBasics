@@ -55,8 +55,33 @@ public class BeerDAO extends BaseDAO {
 		return beers;
 	}
 
-	public void addBeer(BeerDataObject beer) {
-		beer.setId(Long.valueOf(1));
+	public void addBeer(BeerDataObject beer) throws Exception {
+		Connection connection = getConnection();
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("INSERT INTO beer");
+		sql.append(" (label, description, grade, alcohol, brewery, country)");
+		sql.append(" VALUES (?, ?, ?, ?, ?, ?)");
+		String query = sql.toString();
+
+		int paramIndex = 1;
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setString(paramIndex++, beer.getLabel());
+		statement.setString(paramIndex++, beer.getDescription());
+		statement.setDouble(paramIndex++, beer.getGrade());
+		statement.setDouble(paramIndex++, beer.getAlcohol());
+		statement.setString(paramIndex++, beer.getBrewery());
+		statement.setString(paramIndex++, beer.getCountry());
+
+		statement.executeUpdate();
+		ResultSet generatedKeys = statement.getGeneratedKeys();
+
+		if (!atLeastOneRowIn(generatedKeys)) {
+			throw new IllegalStateException("Erreur lors de la récupération de"
+					+ " l'identifiant créé.");
+		}
+
+		beer.setId(generatedKeys.getLong(1));
 	}
 
 	private boolean atLeastOneRowIn(ResultSet result) throws SQLException {

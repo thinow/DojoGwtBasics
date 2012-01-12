@@ -4,6 +4,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.util.List;
 
+import org.fest.assertions.Condition;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ public class BeerDAOTest {
 	private static final String NEW_BEER_COUNTRY = "BEER-COUNTRY";
 	private static final String NEW_BEER_BREWERY = "BEER-BREWERY";
 	private static final double NEW_BEER_ALCOHOL = 8.2;
-	private static final double NEW_BEER_GRADE = 5.12;
+	private static final double NEW_BEER_GRADE = 0.12;
 	private static final String NEW_BEER_DESCRIPTION = "BEER-DESC";
 	private static final String NEW_BEER_LABEL = "BEER-LABEL";
 
@@ -62,18 +63,34 @@ public class BeerDAOTest {
 	@Test
 	public void addBeers() throws Exception {
 		// given
-		BeerDataObject beer = new BeerDataObject();
-		beer.setLabel(NEW_BEER_LABEL);
-		beer.setDescription(NEW_BEER_DESCRIPTION);
-		beer.setGrade(NEW_BEER_GRADE);
-		beer.setAlcohol(NEW_BEER_ALCOHOL);
-		beer.setBrewery(NEW_BEER_BREWERY);
-		beer.setCountry(NEW_BEER_COUNTRY);
+		BeerDataObject inputBeer = new BeerDataObject();
+		inputBeer.setLabel(NEW_BEER_LABEL);
+		inputBeer.setDescription(NEW_BEER_DESCRIPTION);
+		inputBeer.setGrade(NEW_BEER_GRADE);
+		inputBeer.setAlcohol(NEW_BEER_ALCOHOL);
+		inputBeer.setBrewery(NEW_BEER_BREWERY);
+		inputBeer.setCountry(NEW_BEER_COUNTRY);
 
 		// when
-		dao.addBeer(beer);
+		dao.addBeer(inputBeer);
 
 		// then
-		assertThat(beer.getId()).isNotNull().isGreaterThan(0);
+		assertThat(inputBeer.getId()).isNotNull().isGreaterThan(0);
+
+		BeerDataObject storedBeer = dao.getBeer(inputBeer.getId());
+		assertThat(storedBeer).as("Same beer").is(sameAs(inputBeer));
+	}
+
+	private Condition<Object> sameAs(final BeerDataObject expectedBeer) {
+		return new Condition<Object>() {
+			@Override
+			public boolean matches(Object value) {
+				BeerDataObject beer = (BeerDataObject) value;
+
+				return value != null
+						&& expectedBeer.getId().equals(beer.getId())
+						&& expectedBeer.getLabel().equals(beer.getLabel());
+			}
+		};
 	}
 }
