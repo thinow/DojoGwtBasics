@@ -6,6 +6,20 @@
 	</ui:style>
 	<g:HTMLPanel>
 		<h1>Ajouter une nouvelle bière</h1>
-		<p>Pas encore implémenté...</p>
+		<div>
+			<g:Label text="Libellé" />
+			<g:TextBox ui:field="label" />
+			<g:Label text="Description" />
+			<g:TextArea ui:field="description" />
+			<g:Label text="Degré d'alcool" />
+			<g:TextBox ui:field="alcohol" />
+			<g:Label text="Brasserie" />
+			<g:TextBox ui:field="brewery" />
+			<g:Label text="Pays" />
+			<g:ListBox ui:field="country" />
+			<g:Label text="Note" />
+			<g:ListBox ui:field="grade" />
+			<g:PushButton ui:field="saveButton" text="Créer >>" />
+		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 
