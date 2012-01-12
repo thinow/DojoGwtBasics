@@ -1,6 +1,6 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:my="urn:import:dojo.gwt.client.widget">
 
 	<ui:style>
 		.formPanel {
@@ -30,10 +30,10 @@
 			<g:TextBox ui:field="brewery" addStyleNames="{style.field}" />
 
 			<g:Label text="Pays" />
-			<g:ListBox ui:field="country" addStyleNames="{style.field}" />
+			<my:StringListBox ui:field="country" addStyleNames="{style.field}" />
 
 			<g:Label text="Note" />
-			<g:ListBox ui:field="grade" addStyleNames="{style.field}" />
+			<my:NumericListBox ui:field="grade" addStyleNames="{style.field}" />
 
 			<g:PushButton ui:field="saveButton" text="Créer >>" />
 		</div>

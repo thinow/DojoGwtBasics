@@ -4,7 +4,7 @@ CREATE TABLE beer (
 	label varchar,								-- Libellé
 	description varchar,						-- Description
 	grade double CHECK grade BETWEEN 0 AND 1,	-- Note (pourcentage)
-	alcohol double CHECK alcohol > 0,			-- Degré d'alcool
+	alcohol double CHECK alcohol >= 0,			-- Degré d'alcool
 	brewery varchar,							-- Brasserie
 	country varchar,							-- Pays
 );
