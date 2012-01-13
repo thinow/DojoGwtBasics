@@ -1,5 +1,8 @@
 package dojo.gwt.client.screen.add;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
@@ -17,6 +20,9 @@ import dojo.gwt.client.screen.add.AddView.Presenter;
 import dojo.gwt.shared.rpc.service.BeerServiceAsync;
 
 public class AddActivity extends AbstractActivity implements Presenter {
+
+	private static final double GRADE_MAX = 1.0;
+	private static final double GRADE_INTERVAL = 0.0025;
 
 	@Inject
 	private AddView view;
@@ -36,12 +42,32 @@ public class AddActivity extends AbstractActivity implements Presenter {
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		this.eventBus = eventBus;
 
-		view.setPresenter(this);
+		view.bindOnPresenter(this);
 		panel.setWidget(view);
 	}
 
 	public void setPlace(AddPlace place) {
 		this.place = place;
+	}
+
+	@Override
+	public Set<String> getAvailableCountries() {
+		Set<String> countries = new TreeSet<String>();
+		countries.add("France");
+		countries.add("Belgique");
+		countries.add("Allemagne");
+
+		return countries;
+	}
+
+	@Override
+	public Set<Double> getAvailableGrades() {
+		Set<Double> values = new TreeSet<Double>();
+		for (double value = 0.0; value <= GRADE_MAX; value += GRADE_INTERVAL) {
+			values.add(value);
+		}
+
+		return values;
 	}
 
 	@Override

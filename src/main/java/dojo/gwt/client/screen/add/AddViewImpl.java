@@ -1,8 +1,5 @@
 package dojo.gwt.client.screen.add;
 
-import java.util.Arrays;
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.i18n.client.NumberFormat;
@@ -20,9 +17,6 @@ import dojo.gwt.client.widget.NumericListBox;
 import dojo.gwt.client.widget.StringListBox;
 
 public class AddViewImpl extends Composite implements AddView {
-
-	private static final double GRADE_MAX = 1.0;
-	private static final double GRADE_INTERVAL = 0.0025;
 
 	interface Binder extends UiBinder<Widget, AddViewImpl> {
 	}
@@ -50,30 +44,27 @@ public class AddViewImpl extends Composite implements AddView {
 	public AddViewImpl() {
 		Binder uiBinder = GWT.create(Binder.class);
 		initWidget(uiBinder.createAndBindUi(this));
+	}
+
+	@Override
+	public void bindOnPresenter(Presenter presenter) {
+		this.presenter = presenter;
 
 		fillCountryList();
-		fillGradesList();
+		fillGradeList();
 	}
 
 	private void fillCountryList() {
-		List<String> values = Arrays.asList("France", "Belgique", "Allemagne");
-
-		for (String value : values) {
+		for (String value : presenter.getAvailableCountries()) {
 			country.addItem(value, value);
 		}
 	}
 
-	private void fillGradesList() {
+	private void fillGradeList() {
 		NumberFormat formatter = NumberFormat.getFormat("0.00");
-
-		for (double value = 0.0; value <= GRADE_MAX; value += GRADE_INTERVAL) {
+		for (Double value : presenter.getAvailableGrades()) {
 			grade.addItem(formatter.format(value * 100) + "%", value);
 		}
-	}
-
-	@Override
-	public void setPresenter(Presenter presenter) {
-		this.presenter = presenter;
 	}
 
 	@Override
