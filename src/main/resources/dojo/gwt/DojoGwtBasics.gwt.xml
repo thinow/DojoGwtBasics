@@ -19,6 +19,20 @@
 	<!-- any one of the following lines. -->
 	<inherits name="com.google.gwt.user.theme.standard.Standard" />
 
+	<!-- Views implementations. -->
+	<replace-with class="dojo.gwt.client.screen.add.AddViewImpl">
+		<when-type-is class="dojo.gwt.client.screen.add.AddView" />
+	</replace-with>
+
+	<replace-with class="dojo.gwt.client.screen.menu.MenuViewImpl">
+		<when-type-is class="dojo.gwt.client.screen.menu.MenuView" />
+	</replace-with>
+
+	<replace-with class="dojo.gwt.client.screen.top.TopViewImpl">
+		<when-type-is class="dojo.gwt.client.screen.top.TopView" />
+		<!-- <when-property-is name="user.agent" value="ie6" /> -->
+	</replace-with>
+
 	<!-- Specify the app entry point class. -->
 	<entry-point class="dojo.gwt.client.EntryPoint" />
 
