@@ -16,7 +16,7 @@ public class BeerDAO extends BaseDAO {
 		Connection connection = getConnection();
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT id, label, description, grade");
+		sql.append("SELECT *");
 		sql.append(" FROM beer");
 		sql.append(" WHERE id = ?");
 		String query = sql.toString();
@@ -37,7 +37,29 @@ public class BeerDAO extends BaseDAO {
 		Connection connection = getConnection();
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT TOP ? id, label, description, grade");
+		sql.append("SELECT TOP ? *");
+		sql.append(" FROM beer");
+		sql.append(" ORDER BY grade DESC");
+		String query = sql.toString();
+
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setInt(1, count);
+
+		ResultSet result = statement.executeQuery();
+
+		List<BeerDataObject> beers = new ArrayList<BeerDataObject>(count);
+		while (result.next()) {
+			beers.add(mapBeerDataObjectFrom(result));
+		}
+
+		return beers;
+	}
+
+	public List<BeerDataObject> getStrongestBeers(int count) throws Exception {
+		Connection connection = getConnection();
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT TOP ? *");
 		sql.append(" FROM beer");
 		sql.append(" ORDER BY grade DESC");
 		String query = sql.toString();
@@ -96,6 +118,9 @@ public class BeerDAO extends BaseDAO {
 		beer.setLabel(result.getString("label"));
 		beer.setDescription(result.getString("description"));
 		beer.setGrade(result.getDouble("grade"));
+		beer.setAlcohol(result.getDouble("alcohol"));
+		beer.setBrewery(result.getString("brewery"));
+		beer.setCountry(result.getString("country"));
 
 		return beer;
 	}

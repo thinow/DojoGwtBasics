@@ -56,8 +56,27 @@ public class BeerDAOTest {
 
 		assertThat(firstBeer).isNotNull();
 		assertThat(secondBeer).isNotNull();
-		assertThat(firstBeer.getGrade()).isGreaterThanOrEqualTo(
-				secondBeer.getGrade());
+		assertThat(firstBeer.getGrade()).isGreaterThan(secondBeer.getGrade());
+	}
+
+	@Test
+	public void strongestBeers() throws Exception {
+		// given
+		int expectedCount = 2;
+
+		// when
+		List<BeerDataObject> beers = dao.getStrongestBeers(expectedCount);
+
+		// then
+		assertThat(beers).isNotNull().hasSize(expectedCount);
+
+		BeerDataObject firstBeer = beers.get(0);
+		BeerDataObject secondBeer = beers.get(1);
+
+		assertThat(firstBeer).isNotNull();
+		assertThat(secondBeer).isNotNull();
+		assertThat(firstBeer.getAlcohol()).isGreaterThan(
+				secondBeer.getAlcohol());
 	}
 
 	@Test
