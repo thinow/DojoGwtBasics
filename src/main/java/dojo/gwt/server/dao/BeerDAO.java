@@ -1,6 +1,5 @@
 package dojo.gwt.server.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,19 +12,12 @@ import dojo.gwt.server.dao.object.BeerDataObject;
 public class BeerDAO extends BaseDAO {
 
 	public BeerDataObject getBeer(Long id) throws Exception {
-		Connection connection = getConnection();
+		String query = "SELECT * FROM beer WHERE id = ?";
 
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT *");
-		sql.append(" FROM beer");
-		sql.append(" WHERE id = ?");
-		String query = sql.toString();
-
-		PreparedStatement statement = connection.prepareStatement(query);
+		PreparedStatement statement = createStatementFrom(query);
 		statement.setLong(1, id);
 
 		ResultSet result = statement.executeQuery();
-
 		if (!atLeastOneRowIn(result)) {
 			throw new IllegalStateException("Aucune bière trouvée pour " + id);
 		}
@@ -34,66 +26,38 @@ public class BeerDAO extends BaseDAO {
 	}
 
 	public List<BeerDataObject> getBestBeers(int count) throws Exception {
-		Connection connection = getConnection();
+		String query = "SELECT TOP ? * FROM beer ORDER BY grade DESC";
 
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT TOP ? *");
-		sql.append(" FROM beer");
-		sql.append(" ORDER BY grade DESC");
-		String query = sql.toString();
-
-		PreparedStatement statement = connection.prepareStatement(query);
+		PreparedStatement statement = createStatementFrom(query);
 		statement.setInt(1, count);
 
-		ResultSet result = statement.executeQuery();
-
-		List<BeerDataObject> beers = new ArrayList<BeerDataObject>(count);
-		while (result.next()) {
-			beers.add(mapBeerDataObjectFrom(result));
-		}
-
-		return beers;
+		return resultsOfExecutionWith(statement);
 	}
 
 	public List<BeerDataObject> getStrongestBeers(int count) throws Exception {
-		Connection connection = getConnection();
+		String query = "SELECT TOP ? * FROM beer ORDER BY alcohol DESC";
 
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT TOP ? *");
-		sql.append(" FROM beer");
-		sql.append(" ORDER BY grade DESC");
-		String query = sql.toString();
-
-		PreparedStatement statement = connection.prepareStatement(query);
+		PreparedStatement statement = createStatementFrom(query);
 		statement.setInt(1, count);
 
-		ResultSet result = statement.executeQuery();
-
-		List<BeerDataObject> beers = new ArrayList<BeerDataObject>(count);
-		while (result.next()) {
-			beers.add(mapBeerDataObjectFrom(result));
-		}
-
-		return beers;
+		return resultsOfExecutionWith(statement);
 	}
 
 	public void addBeer(BeerDataObject beer) throws Exception {
-		Connection connection = getConnection();
+		StringBuilder query = new StringBuilder();
+		query.append("INSERT INTO beer");
+		query.append(" (label, description, grade, alcohol, brewery, country)");
+		query.append(" VALUES (?, ?, ?, ?, ?, ?)");
 
-		StringBuilder sql = new StringBuilder();
-		sql.append("INSERT INTO beer");
-		sql.append(" (label, description, grade, alcohol, brewery, country)");
-		sql.append(" VALUES (?, ?, ?, ?, ?, ?)");
-		String query = sql.toString();
+		PreparedStatement statement = createStatementFrom(query.toString());
 
-		int paramIndex = 1;
-		PreparedStatement statement = connection.prepareStatement(query);
-		statement.setString(paramIndex++, beer.getLabel());
-		statement.setString(paramIndex++, beer.getDescription());
-		statement.setDouble(paramIndex++, beer.getGrade());
-		statement.setDouble(paramIndex++, beer.getAlcohol());
-		statement.setString(paramIndex++, beer.getBrewery());
-		statement.setString(paramIndex++, beer.getCountry());
+		int parameterIndex = 1;
+		statement.setString(parameterIndex++, beer.getLabel());
+		statement.setString(parameterIndex++, beer.getDescription());
+		statement.setDouble(parameterIndex++, beer.getGrade());
+		statement.setDouble(parameterIndex++, beer.getAlcohol());
+		statement.setString(parameterIndex++, beer.getBrewery());
+		statement.setString(parameterIndex++, beer.getCountry());
 
 		statement.executeUpdate();
 		ResultSet generatedKeys = statement.getGeneratedKeys();
@@ -104,6 +68,24 @@ public class BeerDAO extends BaseDAO {
 		}
 
 		beer.setId(generatedKeys.getLong(1));
+	}
+
+	private PreparedStatement createStatementFrom(String query)
+			throws SQLException {
+		return getConnection().prepareStatement(query);
+	}
+
+	private List<BeerDataObject> resultsOfExecutionWith(
+			PreparedStatement statement) throws SQLException {
+
+		ResultSet result = statement.executeQuery();
+
+		List<BeerDataObject> beers = new ArrayList<BeerDataObject>();
+		while (result.next()) {
+			beers.add(mapBeerDataObjectFrom(result));
+		}
+
+		return beers;
 	}
 
 	private boolean atLeastOneRowIn(ResultSet result) throws SQLException {
